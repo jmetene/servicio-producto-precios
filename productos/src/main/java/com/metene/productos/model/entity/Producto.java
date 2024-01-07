@@ -14,8 +14,8 @@ import lombok.Data;
 public class Producto {
 	@Embedded
 	private ProductoPK productoPK;
-	@Column(name = "product_id")
-	private Long productId;
+	@Column(name = "brand_id")
+	private String brandId;
 	@Column(name = "priority")
 	private int priority;
 	@Column(name = "price")

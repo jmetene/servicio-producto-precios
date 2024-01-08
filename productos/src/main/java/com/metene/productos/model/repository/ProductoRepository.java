@@ -1,33 +1,13 @@
 package com.metene.productos.model.repository;
 
 import java.util.Date;
-import java.util.Optional;
-
+import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+import com.metene.productos.model.entity.Price;
 
-import com.metene.productos.model.entity.Producto;
-import com.metene.productos.model.entity.ProductoPK;
+public interface ProductoRepository extends CrudRepository<Price, Long> {
 
-public interface ProductoRepository extends CrudRepository<Producto, ProductoPK> {
-
-	/**
-	 * Método que busca un producto por parámetros personalizados
-	 * @param brandId Identificador de la marca
-	 * @param productId Identificador del producto
-	 * @param startDate Fecha de inicio de vigencia del producto
-	 * @param endDate Fecha de fin de vigencia del producto
-	 * @return Producto que cumple con los parámetros de búsqueda
-	 */
-	@Query("SELECT p FROM Producto "
-			+ "WHERE p.brandId =: brandId AND "
-			+ "p.productoPK.productId =: productId "
-			+ "AND p.productoPK.startDate =: startDate AND "
-			+ "p.productoPK.endDate =: endDate")
-	Optional<Producto> findByCustomParameters(
-			@Param("brandId") String brandId,
-			@Param("productId") Long productId, 
-			@Param("startDate") Date startDate, 
-			@Param("endDate") Date endDate);
+	@Query("SELECT p FROM Price p WHERE p.startDate >= ?1 and p.startDate <= ?2 and p.productId = ?3 and p.brandId = ?4 order by p.priority")
+	List<Price> findByCustomParameters(Date startDate, Date endDate, String productId, String brandId);
 }

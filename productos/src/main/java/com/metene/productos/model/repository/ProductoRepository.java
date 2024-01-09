@@ -8,6 +8,6 @@ import com.metene.productos.model.entity.Price;
 
 public interface ProductoRepository extends CrudRepository<Price, Long> {
 
-	@Query("SELECT p FROM Price p WHERE p.startDate >= ?1 and p.startDate <= ?2 and p.productId = ?3 and p.brandId = ?4 order by p.priority")
+	@Query("SELECT p FROM Price p WHERE p.startDate >= ?1 and p.startDate <= ?2 and p.productId = ?3 and p.brandId = ?4 order by p.priority ASC")
 	List<Price> findByCustomParameters(Date startDate, Date endDate, String productId, String brandId);
 }

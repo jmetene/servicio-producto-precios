@@ -36,7 +36,7 @@ public class ProductoController {
 
 				dto = productoService.toDto(price);
 			}
-			LOGGER.debug("ProductoController::verProducto: Inicio");
+			LOGGER.debug("ProductoController::verProducto: Fin");
 		} catch (Exception e) {
 			LOGGER.error("ProductoController::verProducto: Error al recuperar la información del precio del producto: ", e.getMessage());
 		}

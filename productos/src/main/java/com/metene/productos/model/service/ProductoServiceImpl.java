@@ -29,11 +29,9 @@ public class ProductoServiceImpl implements IProductoService {
 			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", new Locale("es", "ES"));
 			
-
 			LocalDateTime dateTimeInit = LocalDateTime.parse(effectiveDate, formatter);
 			LocalDateTime dateTimeEnd = LocalDateTime.parse(horafinConsulta, formatter);
 			
-
 			Date startDate = java.sql.Timestamp.valueOf(dateTimeInit);
 			Date endDate = java.sql.Timestamp.valueOf(dateTimeEnd);
 		
